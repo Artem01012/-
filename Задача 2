@@ -1,0 +1,95 @@
+  #include <iostream>
+#include <thread>
+#include <string>
+#include <vector>
+
+class Student {
+
+private:
+	std::string name;
+	std::string surname;
+	int age = 0;
+	std::vector<int> marks;
+
+public: std::string getName() {
+	return name;
+}
+
+public: void setName(std::string name) {
+	this->name = name;
+}
+
+public: std::string getSurname() {
+	return surname;
+}
+
+public: void setSurname(std::string surname) {
+	this->surname = surname;
+}
+
+public: int getAge() {
+	return age;
+}
+
+public: void setAge(int age) {
+	this->age = age;
+}
+public:  std::vector<int> getMarks() {
+	return marks;
+}
+
+public: void setMarks(std::vector<int> marks) {
+	this->marks = marks;
+}
+
+public: void print() {
+	std::cout << "Name: " << name << "\n";
+	std::cout << "Surname: " << surname << "\n";
+	std::cout << "Age: " << age << " years\n";
+	std::cout << "Marks:";
+	for (int i : marks) {
+		std::cout << i << ",";
+
+	}
+	std::cout << "\n";
+	std::cout << "Avg. mark: " << avgMark() << "\n";
+	std::cout << "Perfect student: " << (isPerfectStudent() ? "yes" : "no") << "\n";
+	std::cout << "==============\n";
+}
+
+public: float avgMark() {
+	int sum = 0;
+	for (int i : marks) {
+		sum += i;
+	}
+	return (float) sum / marks.size();
+}
+
+
+public: bool isPerfectStudent() {
+	return avgMark() >= 4.5;
+}
+
+};
+
+int main() {
+	Student a, b;
+
+	//Student 1
+	std::vector<int> marks = { 5,5,5,3,5 };
+	a.setName("Tema");
+	a.setSurname("Tankovskiy");
+	a.setAge(15);
+	a.setMarks(marks);
+
+	//Student 2
+	std::vector<int> marks2 = { 3,4,2,3,5,4};
+	b.setName("Ivan");
+	b.setSurname("Petrov");
+	b.setAge(14);
+	b.setMarks(marks2);
+
+	a.print();
+	b.print();
+
+}
